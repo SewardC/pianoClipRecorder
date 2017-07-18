@@ -1,0 +1,45 @@
+{% extends 'pianoClipRecords/base.html'%}
+{% block title %}Piano Clip Recorder{% endblock%}
+{% block body %}
+		<div class = "container">
+				<div class = "row">
+					<div class = "col-md-offset-2 col-md-8 col-md-offset-2" id = "box">
+						<span id = "myWord" style = "font-size: 15px"><br><br>Click Here to proceed without login</span>
+						<a href= "piano" class = "myButton" style = "font-family: Orbitron">Proceed</a>
+					</div>
+				</div>
+				<div class = "row">
+					<div class = "col-md-offset-2 col-md-8 col-md-offset-2" id = "box">
+						<h1 id = "myWord" style = "font-size: 25px"><b>Login:</b></h1>
+						<form class = "form-horizontal" method = "post" action="" enctype = "multipart/form-data">
+							<div class = "form-group" id = "margin_change">
+								<table class = "center">
+									{% csrf_token %}
+									{% for field in form %}
+										<div class = "form-group">
+											<div class = "col-sm-offset-2 col-sm-10">
+												<span class = "text-danger small">{{field.error}}</span>
+											</div>
+											<tr>
+												<label class = "control-label col-md-2" id = "myWord">{{field.label_tag}}</label>
+											</tr>
+											<tr>
+												<div class = "col-md-10" id = "input_field">{{field}}</div>
+											</tr>
+										</div>
+									{% endfor %}
+									<tr>
+										<th style = "padding-bottom: -20px"></th>
+										<th style = "padding-bottom: -20px">
+											<div class = "col-sm-offset-10 col-sm-2">
+												<input style = "font-family: Orbitron" class = "myButton" type = "submit" value="Log in">
+											</div>
+										</th>
+									</tr>
+								</table>
+							</div>
+						</form>
+					</div>
+				</div>
+		</div>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends 'pianoClipRecords/base2.html'%}
+{% block title %}Recording Page{% endblock%}
+{% block body %}
+
+<div class = "container">
+	<div class = "col-md-offset-2 col-md-8" style = "background-radius: 5px">
+		<div class = "pianoBase" style = "background-radius: 5px">
+			<ul class="set">
+			  <li class="white c"></li>
+			  <li class="black cs"></li>
+			  <li class="white d"></li>
+			  <li class="black ds"></li>
+			  <li class="white e"></li>
+			  <li class="white f"></li>
+			  <li class="black fs"></li>
+			  <li class="white g"></li>
+			  <li class="black gs"></li>
+			  <li class="white a"></li>
+			  <li class="black as"></li>
+			  <li class="white b"></li>
+			</ul>
+		</div>
+	</div>
+</div>
+	<div class = "container">
+		<div class = "row">
+			<div>
+				<span>&nbsp; </span>
+				<ul style = "left: 45%; display:table; margin:0; auto;" class = "col-md-offset-5 col-md-2" id = "dialog"></ul>
+			</div>
+		</div>
+			<div class = "row">
+				<div class = "col-md-offset-2 col-md-8 col-md-offset-2" id = "box">
+					<br>
+					<label id = "myWord">Best Choices:</label>
+					<table style = "float: right">
+						<tr style = "float: right">
+							<th class = "col-md-2" style = "margin-left = 20px"><a href="#" id="PauseButton">||</a></th>
+							<th class = "col-md-offset-4 col-md-2" style = "margin-left = 20px" ><button type = "button" onclick = "startRecord()" id="PlayButton">△</button></th>
+							<th class = "col-md-offset-8 col-md-4" style = "margin-left = 20px"><a href="#" id="SaveButton">Save</a></th>
+							<th class = "col-md-offset-10 col-md-2" style = "margin = 20px"><a href="#"  id="StopButton">■</a></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+	</div>
+
+<script type = "text/javascript">
+var startFlag = 0;
+var $dialog = document.getElementById("dialog");
+$(document).ready(function(){
+
+document.addEventListener("keydown", function onkeydown(event){
+		//var x = parseInt(event.keyCode);
+		var x = event.keyCode;
+		var element;
+		switch(x){
+			case 65:
+				element = document.getElementsByTagName("LI")[1];
+				Synth.play(0, 'C', 4, 2);
+				break;
+			case 83:
+				element = document.getElementsByTagName("LI")[3];
+				Synth.play(0, 'D', 4, 2);
+				break;	
+			case 68:
+				element = document.getElementsByTagName("LI")[5];
+				Synth.play(0, 'E', 4, 2);
+				break;
+			case 70:
+				element = document.getElementsByTagName("LI")[6];
+				Synth.play(0, 'F', 4, 2);
+				break;	
+			case 71:
+				element = document.getElementsByTagName("LI")[8];
+				Synth.play(0, 'G', 4, 2);
+				break;	
+			case 72:
+				element = document.getElementsByTagName("LI")[10];
+				Synth.play(0, 'A', 4, 2);
+				break;	
+			case 74:
+				element = document.getElementsByTagName("LI")[12];
+				Synth.play(0, 'B', 4, 2);
+				break;	
+			default:
+				break;
+			}
+		if(element != null)
+			element.setAttribute("style", "border-top:1px solid #777; border-left:1px solid #999; border-bottom:1px solid #999; box-shadow:2px 0 3px rgba(0,0,0,0.1) inset, -5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2); background: -webkit-linear-gradient(top, #fff 0%,#e9e9e9 100%;");
+		var element2;
+		switch(x){
+			case 87:
+				element2 = document.getElementsByTagName("LI")[2];
+				Synth.play(0, 'C#', 4, 2);
+				break;	
+			case 69:
+				element2 = document.getElementsByTagName("LI")[4];
+				Synth.play(0, 'D#', 4, 2);
+				break;	
+			case 84:
+				element2 = document.getElementsByTagName("LI")[7];
+				Synth.play(0, 'F#', 4, 2);
+				break;	
+			case 89:
+				element2 = document.getElementsByTagName("LI")[9];
+				Synth.play(0, 'G#', 4, 2);
+				break;	
+			case 85:
+				element2 = document.getElementsByTagName("LI")[11];
+				Synth.play(0, 'A#', 4, 2);
+				break;	
+			default:
+				break;
+			}
+		if(element2 != null )
+			element2.setAttribute("style", "box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset, 0 -2px 2px 3px rgba(0,0,0,0.6) inset, 0 1px 2px rgba(0,0,0,0.5); background:-webkit-linear-gradient(left, #444 0%,#222 100%);");
+}, false);
+
+document.addEventListener("keyup", function onkeyup(event){
+		//var x = parseInt(event.keyCode);
+		var x = event.keyCode;
+		var element;
+		switch(x){
+			case 65:
+				element = document.getElementsByTagName("LI")[1];
+				break;
+			case 83:
+				element = document.getElementsByTagName("LI")[3];
+				break;	
+			case 68:
+				element = document.getElementsByTagName("LI")[5];
+				break;
+			case 70:
+				element = document.getElementsByTagName("LI")[6];
+				break;	
+			case 71:
+				element = document.getElementsByTagName("LI")[8];
+				break;	
+			case 72:
+				element = document.getElementsByTagName("LI")[10];
+				break;	
+			case 74:
+				element = document.getElementsByTagName("LI")[12];
+				break;	
+			default:
+				break;
+			}
+		if(element != null)
+			element.setAttribute("style", "height:16em; width:4em; z-index:1; border-left:1px solid #bbb; border-bottom:1px solid #bbb; border-radius:0 0 5px 5px; box-shadow:-1px 0 0 rgba(255,255,255,0.8) inset, 0 0 5px #ccc inset, 0 0 3px rgba(0,0,0,0.2); background: -webkit-linear-gradient(top, #eeeeee 0%,#ffffff 100%);");
+		var element2;
+		switch(x){
+			case 87:
+				element2 = document.getElementsByTagName("LI")[2];
+				break;	
+			case 69:
+				element2 = document.getElementsByTagName("LI")[4];
+				break;	
+			case 84:
+				element2 = document.getElementsByTagName("LI")[7];
+				break;	
+			case 89:
+				element2 = document.getElementsByTagName("LI")[9];
+				break;	
+			case 85:
+				element2 = document.getElementsByTagName("LI")[11];
+				break;	
+			default:
+				break;
+			}
+		if(element2 != null )
+			element2.setAttribute("style", "height:8em; width:2em; margin:0 0 0 -1em; z-index:2; border:1px solid #000; border-radius:5px 0 5px 5px; box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset, 0 -5px 2px 3px rgba(0,0,0,0.6) inset, 0 2px 4px rgba(0,0,0,0.5); background:-webkit-linear-gradient(45deg, #222 0%,#555 100%);");
+}, false);
+	
+});
+
+	function startRecord(){
+		if(startFlag == 0){
+			var node = document.createElement("LI");
+			var textnode = document.createTextNode("Recording...");
+			node.appendChild(textnode);
+			$dialog.appendChild(node);
+
+			startFlag = 1;
+		}
+	}
+</script>
+{% endblock %}
